@@ -36,8 +36,14 @@ You can train the neural network using the `Train` method. This method takes thr
 - `expected_set`: A list of lists. The inner lists consist of floats, representing a single set of expected outputs from the neural network
 - `learning_rate`: A float which dictates how fast the network should learn
 
-The number of elements in `inputs_set` and `expected_set` must be equal.
-Each of the inner lists in `inputs_set` must have a number of elements equal to the number of input neurons in the network; the same applies to `expected_set` and the number of output neurons. The learning rate must be a positive number.
+The number of elements in `inputs_set` and `expected_set` must be equal. The learning rate must be a positive number.
+Each of the inner lists in `inputs_set` must have a number of elements equal to the number of input neurons in the network. Similarly, each of the inner lists in `expected_set` must have a number of elements equal to the number of output neurons in the network.
+
+Usage of the `Train` method is shown in the example below:
+```python
+network = Network(2, 10, 2)
+network.Train([[0.1, 0.2], [0.5, 0.3]], [[0.5, 0.8], [0.6, 0.7]])
+```
 
 Alternatively, you can train the neural network using data in a text file, with the `TrainFromFile` method.
 The method takes two parameters: `file_name`, which is a path to the training file, and `learning_rate`, which was described above.
@@ -47,12 +53,24 @@ The file must be formatted as follows:
   1. A line of space-separated floats representing a set of inputs
   2. A line of space-separated floats representing a set of expected outputs
 
+Below is an example of a training file.
+The data in this training file is exactly the same as the data passed to the `Train` method in the example above.
+```
+2
+0.1 0.2
+0.5 0.8
+0.5 0.3
+0.6 0.7
+```
+
 ### Saving and Loading
 
 The `Network` class has methods for saving/loading instances of the class into a text file.
 This is shown in the below example:
 ```python
+# Save the network to the file path 'my_network.nn'
 network.SaveNetwork('my_network.nn')
+# Load the network at the file path 'my_network.nn'
 loaded_network = Network.LoadNetwork('my_network.nn')
 ```
 
@@ -63,7 +81,7 @@ loaded_network = Network.LoadNetwork('my_network.nn')
 This script creates a network with 16 input neurons and 1 output neuron.
 The inputs represent a 16-bit number. The output of the network should be 1 if the number is even, or 0 if the number is odd.
 The script trains the network using the first 1000 natural numbers.
-It then asks the user to input numbers between 0 and 65535, and uses the trained network to determine whether each number is even or odd.
+It then asks the user to input numbers between 0 and 65535, and uses the trained network to determine whether each inputted number is even or odd.
 
 ### Identifying Digits
 `digits.nn` contains data for a neural network which was trained using the [MNIST database of handwritten digits.](http://yann.lecun.com/exdb/mnist/) `digits.py` loads this network, and asks the user for file names of images with a resolution of 28x28. The script then uses the neural network to identify which digit is drawn in the image. The network can identify the correct digit with an accuracy of ~92%. Note that this script requires [Pillow](https://python-pillow.org/) to run.
