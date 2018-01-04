@@ -128,8 +128,8 @@ class Network():
     def Train(self, inputs_set, expected_set, learning_rate):
         '''(Network, list, list, float) -> None
         Trains the network with the given inputs and expected outputs.
-        Raises an InputSizeError if the number of the inputs/outputs in the
-        training file is incorrect.
+        Raises an InputSizeError if the number of the inputs/outputs in a
+        training set is incorrect.
         REQ: len(inputs) = len(expected)
         REQ: learning_rate > 0
         '''
