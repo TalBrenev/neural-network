@@ -42,7 +42,7 @@ Each of the inner lists in `inputs_set` must have a number of elements equal to 
 Usage of the `Train` method is shown in the example below:
 ```python
 network = Network(3, [2, 10, 2])
-network.Train([[0.1, 0.2], [0.5, 0.3]], [[0.5, 0.8], [0.6, 0.7]])
+network.Train([[0.1, 0.2], [0.5, 0.3]], [[0.5, 0.8], [0.6, 0.7]], 3)
 ```
 
 Alternatively, you can train the neural network using data in a text file, with the `TrainFromFile` method.
